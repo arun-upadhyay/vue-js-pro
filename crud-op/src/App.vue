@@ -1,28 +1,49 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div id="app">
+        <h2>Welcome</h2>
+        <Notes v-bind:notes="notes"></Notes>
+
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
-}
+    import Notes from './components/Notes'
+
+    export default {
+        name: "app",
+        components: {
+            Notes
+        },
+        data() {
+            return {
+                notes: this.notes
+            }
+        },
+        created: function () {
+            this.fetchNotes();
+        },
+        methods: {
+            fetchNotes: function () {
+                this.notes = [
+                    {
+                        _id: "1",
+                        title: "tile1",
+                        desc: "axy"
+                    },
+                    {
+                        _id: "2",
+                        title: "pqr",
+                        desc: "kdkd"
+                    }
+                ]
+            }
+        }
+    }
+
 </script>
-
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    [v-cloak] {
+        display: none;
+    }
 </style>
