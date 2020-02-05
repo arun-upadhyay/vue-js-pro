@@ -1,14 +1,15 @@
 <template>
     <div>
-        <h1>{{note.title}}</h1>
-        <p>{{note.description}}</p>
+        <h1>{{post.title}}</h1>
+        <p>{{post.description}}</p>
+
     </div>
 </template>
 
 <script>
     export default {
-        name: "Note",
-        props: ["note"]
+        name: "Post",
+        props: ["post"],
     }
 </script>
 
