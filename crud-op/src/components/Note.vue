@@ -1,8 +1,7 @@
 <template>
     <div>
-        <h1>{{note._id}}</h1>
-        <p>{{note.title}}</p>
-        <p>{{note.desc}}</p>
+        <h1>{{note.title}}</h1>
+        <p>{{note.description}}</p>
     </div>
 </template>
 

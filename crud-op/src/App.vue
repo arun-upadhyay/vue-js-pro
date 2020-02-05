@@ -7,8 +7,8 @@
 </template>
 
 <script>
-
     import Notes from './components/Notes'
+    import axios from 'axios'
 
     export default {
         name: "app",
@@ -25,18 +25,11 @@
         },
         methods: {
             fetchNotes: function () {
-                this.notes = [
-                    {
-                        _id: "1",
-                        title: "tile1",
-                        desc: "axy"
-                    },
-                    {
-                        _id: "2",
-                        title: "pqr",
-                        desc: "kdkd"
-                    }
-                ]
+                var url = 'https://arun-express-api.herokuapp.com/posts';
+                axios.get(url)
+                    .then(res => {
+                        this.notes = res.data
+                    });
             }
         }
     }
