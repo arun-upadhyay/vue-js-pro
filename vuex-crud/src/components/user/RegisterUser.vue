@@ -1,37 +1,46 @@
 <template>
-    <div class="register">
-        <div v-if="errors.length" class="error-div">
-            <b>Please correct the following errors</b>
-            <ul>
-                <li :key="error.id" v-for="error in errors" class="error.id">{{error.text}}</li>
-            </ul>
+    <div>
+        <div class="register" v-show="show_register_form">
+            <div v-if="errors.length" class="error-div">
+                <b>Please correct the following errors</b>
+                <ul>
+                    <li :key="error.id" v-for="error in errors" class="error.id">{{error.text}}</li>
+                </ul>
+            </div>
+            <form @submit.prevent="register">
+                <div class="form-group">
+                    <label>Enter your username</label>
+                    <input type="username"
+                           id="input-username"
+                           class="form-control" placeholder="Enter username" v-model="username">
+                    <small id="usernameHelp" class="form-text text-muted">We'll never share your username with anyone
+                        else.</small>
+                </div>
+                <div class="form-group">
+                    <label>Enter your password</label>
+                    <input type="password" id="input-password" class="form-control" placeholder="Password"
+                           v-model="password">
+                </div>
+                <div class="form-group">
+                    <label>Enter your password again</label>
+                    <input type="password" id="input-password-again" class="form-control" placeholder="Password"
+                           v-model="password_again">
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-right: 20px">Register</button>
+                <button type="reset" class="btn btn-primary" @click="reset">Reset</button>
+            </form>
+
         </div>
-        <form @submit.prevent="register">
-            <div class="form-group">
-                <label>Enter your username</label>
-                <input type="username"
-                       id="input-username"
-                       class="form-control" placeholder="Enter username" v-model="username">
-                <small id="usernameHelp" class="form-text text-muted">We'll never share your username with anyone
-                    else.</small>
-            </div>
-            <div class="form-group">
-                <label>Enter your password</label>
-                <input type="password" id="input-password" class="form-control" placeholder="Password"
-                       v-model="password">
-            </div>
-            <div class="form-group">
-                <label>Enter your password again</label>
-                <input type="password" id="input-password-again" class="form-control" placeholder="Password"
-                       v-model="password_again">
-            </div>
-            <button type="submit" class="btn btn-primary" style="margin-right: 20px">Register</button>
-            <button type="reset" class="btn btn-primary" @click="reset">Reset</button>
-        </form>
+        <div v-show="!show_register_form">
+            <h1> User has been registered</h1>
+            <p><a href="/">Login</a></p>
+        </div>
     </div>
+
 </template>
 
 <script>
+
     export default {
         name: "RegisterUser",
         data() {
@@ -39,7 +48,8 @@
                 errors: [],
                 username: '',
                 password: '',
-                password_again: ''
+                password_again: '',
+                show_register_form: true
             }
         },
         watch: {},
@@ -53,6 +63,10 @@
                 this.$store.dispatch(('addUser'), {
                     username: this.username,
                     password: this.password
+                }).then((res) => {
+                    console.log(res)
+                    this.show_register_form = false
+
                 });
                 this.username = '';
                 this.password = '';
@@ -76,7 +90,7 @@
                 if (!this.password_again) {
                     this.errors.push({id: 'error3', text: 'Second password is also require.'});
                 }
-                if (this.password != this.password_again) {
+                if (this.password !== this.password_again) {
                     this.errors.push({id: 'error4', text: 'Password did not match'});
                 }
             }

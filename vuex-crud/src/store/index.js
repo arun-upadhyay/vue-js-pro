@@ -3,13 +3,13 @@ import Vuex from 'vuex';
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-Vue.use(VueAxios, axios)
+Vue.use(VueAxios, axios);
 Vue.use(Vuex);
 /**
  * API URI
  */
-let url = 'http://localhost:3000/posts';
-let userUri = 'http://localhost:3000/user';
+let url = 'http://localhost:3001/posts';
+let userUri = 'http://localhost:3001/user';
 
 export const store = new Vuex.Store({
     state: {
@@ -33,7 +33,6 @@ export const store = new Vuex.Store({
             localStorage.setItem('token', data.token);
         },
         /**
-         * Fetch post mutation
          * @param state
          * @param posts
          */
