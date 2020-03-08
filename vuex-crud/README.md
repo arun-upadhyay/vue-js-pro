@@ -26,3 +26,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### Deploying to server
 Express is added run the vue app as node server.js
 
+### Current Running on Heroku
+(Support JWT token authentication)
+Vue App
+https://vuex-apps.herokuapp.com/
+Express API
+https://arun-express-api.herokuapp.com/
+
