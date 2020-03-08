@@ -8,8 +8,8 @@ Vue.use(Vuex);
 /**
  * API URI
  */
-let url = 'http://localhost:3001/posts';
-let userUri = 'http://localhost:3001/user';
+let url = 'https://arun-express-api.herokuapp.com/posts';
+let userUri = 'https://arun-express-api.herokuapp.com/user';
 
 export const store = new Vuex.Store({
     state: {

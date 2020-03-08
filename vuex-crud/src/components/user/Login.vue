@@ -50,7 +50,6 @@
         methods: {
             login: function (event) {
                 this.validation();
-                // validate form.
                 if (this.errors.length !== 0) {
                     return false;
                 }
@@ -62,6 +61,7 @@
                     this.$router.push({name: 'posts'})
                 }).catch(err => {
                     this.errors.push({id: 'error1', text: 'Invalid username or password.'});
+
                     console.log(err);
                 });
             },
